@@ -8,7 +8,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(include)
 
-add_executable(test_concepts 
+add_executable(test_concepts
+    src/complex.cpp
     tests/test_concepts.cpp
     # Later, you'll add your Matrix.cpp or .s files here
 )

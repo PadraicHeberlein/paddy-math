@@ -1,3 +1,6 @@
+#ifndef COMPLEX_HPP
+#define COMPLEX_HPP
+
 class Complex {
 public:
   double a, b;
@@ -28,3 +31,5 @@ public:
   Complex operator*(double scalar) const;
   Complex operator/(double scalar) const;
 };
+
+#endif // COMPLEX_HPP

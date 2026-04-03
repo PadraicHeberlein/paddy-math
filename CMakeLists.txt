@@ -12,3 +12,7 @@ add_executable(test_concepts
     tests/test_concepts.cpp
     # Later, you'll add your Matrix.cpp or .s files here
 )
+
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")
+    target_compile_options(test_concepts PRIVATE -march=native -O3)
+endif()

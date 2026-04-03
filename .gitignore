@@ -1,3 +1,42 @@
-/test_concepts
-/test_concepts_bin
-/test_concepts_bin_default
+# --- IDE Metadata ---
+.vscode/
+!.vscode/c_cpp_properties.json
+!.vscode/settings.json
+*.swp
+*.swo
+
+# --- Build Directories ---
+build/
+bin/
+obj/
+out/
+dist/
+
+# --- Compiled Objects & Libraries ---
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.elf
+*.bin
+*.hex
+
+# --- CMake Artifacts ---
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+Makefile
+_deps/
+
+# --- Dependency Management ---
+vcpkg_installed/
+conan/
+
+# --- System & OS Files ---
+.DS_Store
+Thumbs.db

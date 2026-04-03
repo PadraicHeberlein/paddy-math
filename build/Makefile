@@ -116,6 +116,43 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named test_concepts
+
+# Build rule for target.
+test_concepts: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_concepts
+.PHONY : test_concepts
+
+# fast build rule for target.
+test_concepts/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/build
+.PHONY : test_concepts/fast
+
+tests/test_concepts.o: tests/test_concepts.cpp.o
+.PHONY : tests/test_concepts.o
+
+# target to build an object file
+tests/test_concepts.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/tests/test_concepts.cpp.o
+.PHONY : tests/test_concepts.cpp.o
+
+tests/test_concepts.i: tests/test_concepts.cpp.i
+.PHONY : tests/test_concepts.i
+
+# target to preprocess a source file
+tests/test_concepts.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/tests/test_concepts.cpp.i
+.PHONY : tests/test_concepts.cpp.i
+
+tests/test_concepts.s: tests/test_concepts.cpp.s
+.PHONY : tests/test_concepts.s
+
+# target to generate assembly for a file
+tests/test_concepts.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/tests/test_concepts.cpp.s
+.PHONY : tests/test_concepts.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -124,6 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test_concepts"
+	@echo "... tests/test_concepts.o"
+	@echo "... tests/test_concepts.i"
+	@echo "... tests/test_concepts.s"
 .PHONY : help
 
 

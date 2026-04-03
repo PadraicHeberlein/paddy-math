@@ -1,11 +1,14 @@
-cmake_minimum_required(VERSION 3.10)
-project(PaddyMath)
+cmake_minimum_required(VERSION 3.15)
+project(PaddyMath VERSION 1.0 LANGUAGES C CXX ASM)
 
 # Set the C++ standard to 20
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Add our header-only library
-add_library(paddy_math INTERFACE)
-target_include_directories(paddy_math INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(include)
+
+add_executable(test_concepts 
+    tests/test_concepts.cpp
+    # Later, you'll add your Matrix.cpp or .s files here
+)

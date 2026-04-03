@@ -129,6 +129,30 @@ test_concepts/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/build
 .PHONY : test_concepts/fast
 
+src/complex.o: src/complex.cpp.o
+.PHONY : src/complex.o
+
+# target to build an object file
+src/complex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/src/complex.cpp.o
+.PHONY : src/complex.cpp.o
+
+src/complex.i: src/complex.cpp.i
+.PHONY : src/complex.i
+
+# target to preprocess a source file
+src/complex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/src/complex.cpp.i
+.PHONY : src/complex.cpp.i
+
+src/complex.s: src/complex.cpp.s
+.PHONY : src/complex.s
+
+# target to generate assembly for a file
+src/complex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/src/complex.cpp.s
+.PHONY : src/complex.cpp.s
+
 tests/test_concepts.o: tests/test_concepts.cpp.o
 .PHONY : tests/test_concepts.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test_concepts"
+	@echo "... src/complex.o"
+	@echo "... src/complex.i"
+	@echo "... src/complex.s"
 	@echo "... tests/test_concepts.o"
 	@echo "... tests/test_concepts.i"
 	@echo "... tests/test_concepts.s"

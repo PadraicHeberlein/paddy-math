@@ -1,21 +1,27 @@
 #ifndef COMPLEX_HPP
 #define COMPLEX_HPP
 
+#include <ostream>
+
 class Complex {
+private:
+  double r, i;
+
 public:
-  double a, b;
+  Complex() : r(0.0), i(0.0) {}
+  Complex(double r, double i) : r(r), i(i) {}
+  Complex(double r) : r(r), i(0.0) {}
+  Complex(const Complex &other) = default;
+  Complex(Complex &&other) = default;
 
-  Complex() : a(0.0), b(0.0) {}
-  Complex(double a, double b) : a(a), b(b) {}
-  Complex(double a) : a(a), b(0.0) {}
-  Complex(const Complex &other) : a(other.a), b(other.b) {}
-  Complex(Complex &&other) : a(other.a), b(other.b) {}
-
-  double real() const { return a; }
-  double imag() const { return b; }
+  double real() const { return r; }
+  double imag() const { return i; }
 
   static Complex zero() { return {0.0, 0.0}; }
   static Complex one() { return {1.0, 0.0}; }
+
+  Complex &operator=(const Complex &other) = default;
+  Complex &operator=(Complex &&other) = default;
 
   Complex operator-() const;
 
@@ -30,6 +36,11 @@ public:
 
   Complex operator*(double scalar) const;
   Complex operator/(double scalar) const;
+
+  friend inline Complex operator*(double scalar, const Complex &c) {
+    return c * scalar;
+  }
+  friend std::ostream &operator<<(std::ostream &os, const Complex &c);
 };
 
 #endif // COMPLEX_HPP

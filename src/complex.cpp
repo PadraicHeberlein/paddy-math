@@ -19,7 +19,7 @@ bool Complex::operator!=(const Complex &other) const {
 }
 
 Complex Complex::operator*(const Complex &other) const {
-  return {r * other.r - i * other.i, r * other.i + i * other.r};
+  return Complex(r * other.r - i * other.i, r * other.i + i * other.r);
 }
 
 Complex Complex::operator/(const Complex &other) const {

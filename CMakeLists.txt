@@ -8,11 +8,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(include)
 
-add_executable(test_concepts
-    src/complex.cpp
-    tests/test_concepts.cpp
-    # Later, you'll add your Matrix.cpp or .s files here
-)
+add_executable(test_concepts tests/test_concepts.cpp src/complex.cpp)
+
+add_executable(test_complex tests/test_complex.cpp src/complex.cpp)
 
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")
     target_compile_options(test_concepts PRIVATE -march=native -O3)

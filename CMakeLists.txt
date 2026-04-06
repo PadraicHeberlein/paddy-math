@@ -6,16 +6,23 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Prefer using target_include_directories for each target to be explicit
-add_executable(test_concepts tests/test_concepts.cpp src/complex.cpp src/math_backend.c)
+# Determine architecture and common sources
+set(COMMON_SRCS src/complex.cpp src/math_backend.c)
+
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")
+    list(APPEND COMMON_SRCS src/arm_kernel.S)
+    add_definitions(-DARCH_ARM)
+endif()
+
+add_executable(test_concepts tests/test_concepts.cpp ${COMMON_SRCS})
 target_include_directories(test_concepts PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
-add_executable(test_complex tests/test_complex.cpp src/complex.cpp src/math_backend.c)
+add_executable(test_complex tests/test_complex.cpp ${COMMON_SRCS})
 target_include_directories(test_complex PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
-add_executable(test_matrix tests/test_matrix.cpp src/complex.cpp src/math_backend.c)
+add_executable(test_matrix tests/test_matrix.cpp ${COMMON_SRCS})
 target_include_directories(test_matrix PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")
-    target_compile_options(test_concepts PRIVATE -march=native -O3)
+    target_compile_options(test_matrix PRIVATE -march=native -O3)
 endif()

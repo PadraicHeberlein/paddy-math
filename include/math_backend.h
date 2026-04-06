@@ -22,6 +22,11 @@ void complex_exp_taylor_kernel(double* r_out, double* i_out,
 void complex_exp_backend(double* r_out, double* i_out, 
                          double r_in, double i_in);
 
+/**
+ * @brief ARM A64 Assembly kernel for 2x2 complex matrix multiply.
+ */
+void complex_matrix_mul_2x2_neon(double* out, const double* a, const double* b);
+
 #ifdef __cplusplus
 }
 #endif

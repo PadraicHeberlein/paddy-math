@@ -39,11 +39,17 @@ int main() {
     assert(C(1, 0) == Complex(0, -1));
     assert(C(1, 1) == Complex(2, 0));
 
-    // 2. Matrix Multiplication
+    // 2. Matrix Multiplication:
+    /*
+        D = | (1 + 0i)  (0 + 1i) | | (1 + 0i)  (0 + 1i) |
+            | (0 - 1i)  (1 + 0i) | | (0 - 1i)  (1 + 0i) |
+
+          = | (1 - i^2) (i + i)  | =    | 2     2i  |
+            | (-i - i) (-i^2 + 1)|      |-2i    2   |
+    */
     Matrix<Complex> D = A * A;
     std::cout << "A * A:\n" << D << std::endl;
-    // (1  i) * (1  i) = (1-1  i+i) = (2  2i)
-    // (-i 1)   (-i 1)   (-i-i -1+1) = (-2i 2)
+    
     assert(D(0, 0) == Complex(2, 0));
     assert(D(0, 1) == Complex(0, 2));
     assert(D(1, 0) == Complex(0, -2));

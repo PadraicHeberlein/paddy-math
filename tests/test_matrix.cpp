@@ -62,6 +62,19 @@ int main() {
     assert(Res(0, 0) == Complex(2, 0)); 
 #endif
 
+    // 4. Matrix Transpose
+    std::cout << "Testing Transpose..." << std::endl;
+    Matrix<Complex> E = A.transpose();
+    std::cout << "A.transpose():\n" << E << std::endl;
+    assert(E(0, 1) == A(1, 0));
+    assert(E(1, 0) == A(0, 1));
+
+    // 5. Scalar * Matrix Multiplication (Friend)
+    std::cout << "Testing Scalar * Matrix..." << std::endl;
+    Matrix<Complex> F = 2.0 * A;
+    std::cout << "2.0 * A:\n" << F << std::endl;
+    assert(F(0, 1) == A(0, 1) * 2.0);
+
     std::cout << "SUCCESS: Matrix class and ARM backend verified!" << std::endl;
 
     return 0;

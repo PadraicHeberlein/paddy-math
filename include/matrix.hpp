@@ -61,6 +61,20 @@ public:
         return res;
     }
 
+    friend Matrix operator*(double scalar, const Matrix& m) {
+        return m * scalar;
+    }
+
+    Matrix transpose() const {
+        Matrix res(cols, rows);
+        for (size_t i = 0; i < rows; ++i) {
+            for (size_t j = 0; j < cols; ++j) {
+                res(j, i) = (*this)(i, j);
+            }
+        }
+        return res;
+    }
+
     friend std::ostream& operator<<(std::ostream& os, const Matrix& m) {
         for (size_t i = 0; i < m.rows; ++i) {
             for (size_t j = 0; j < m.cols; ++j) {
@@ -81,23 +95,25 @@ Matrix<T> exp(const Matrix<T>& A, int terms = 15) {
     size_t n = A.get_rows();
     
     // 1. Calculate a simple Frobenius-style norm for scaling
-    double norm = 0.0;
+    double matrix_norm = 0.0;
     for (size_t i = 0; i < n; ++i) {
         for (size_t j = 0; j < n; ++j) {
             T val = A(i, j);
-            // Assuming T has a real() or equivalent for norm calculation
-            // For Complex, we'll use a simplified check
-            double v = 0;
-            if constexpr (std::is_arithmetic_v<T>) v = std::abs((double)val);
-            else v = std::sqrt(val.real()*val.real() + val.imag()*val.imag());
-            norm += v;
+            if constexpr (std::is_arithmetic_v<T>) {
+                matrix_norm += std::abs((double)val);
+            } else if constexpr (NormedAlgebra<T>) {
+                matrix_norm += norm(val);
+            } else {
+                // Fallback for types without a defined norm
+                matrix_norm += 1.0; 
+            }
         }
     }
 
     // 2. Scaling: Find s such that ||A / 2^s|| < 0.5
     int s = 0;
-    if (norm > 0.5) {
-        s = (int)std::ceil(std::log2(norm / 0.5));
+    if (matrix_norm > 0.5) {
+        s = (int)std::ceil(std::log2(matrix_norm / 0.5));
     }
 
     Matrix<T> A_scaled = A * (1.0 / std::pow(2.0, s));

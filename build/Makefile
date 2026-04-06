@@ -215,6 +215,36 @@ src/math_backend.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/src/math_backend.c.s
 .PHONY : src/math_backend.c.s
 
+src/matrix.o: src/matrix.cpp.o
+.PHONY : src/matrix.o
+
+# target to build an object file
+src/matrix.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/src/matrix.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_complex.dir/build.make CMakeFiles/test_complex.dir/src/matrix.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/src/matrix.cpp.o
+.PHONY : src/matrix.cpp.o
+
+src/matrix.i: src/matrix.cpp.i
+.PHONY : src/matrix.i
+
+# target to preprocess a source file
+src/matrix.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/src/matrix.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_complex.dir/build.make CMakeFiles/test_complex.dir/src/matrix.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/src/matrix.cpp.i
+.PHONY : src/matrix.cpp.i
+
+src/matrix.s: src/matrix.cpp.s
+.PHONY : src/matrix.s
+
+# target to generate assembly for a file
+src/matrix.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_concepts.dir/build.make CMakeFiles/test_concepts.dir/src/matrix.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_complex.dir/build.make CMakeFiles/test_complex.dir/src/matrix.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_matrix.dir/build.make CMakeFiles/test_matrix.dir/src/matrix.cpp.s
+.PHONY : src/matrix.cpp.s
+
 tests/test_complex.o: tests/test_complex.cpp.o
 .PHONY : tests/test_complex.o
 
@@ -304,6 +334,9 @@ help:
 	@echo "... src/math_backend.o"
 	@echo "... src/math_backend.i"
 	@echo "... src/math_backend.s"
+	@echo "... src/matrix.o"
+	@echo "... src/matrix.i"
+	@echo "... src/matrix.s"
 	@echo "... tests/test_complex.o"
 	@echo "... tests/test_complex.i"
 	@echo "... tests/test_complex.s"

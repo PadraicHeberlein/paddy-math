@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Determine architecture and common sources
-set(COMMON_SRCS src/complex.cpp src/math_backend.c)
+set(COMMON_SRCS src/complex.cpp src/math_backend.c src/matrix.cpp)
 
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")
     list(APPEND COMMON_SRCS src/arm_kernel.S)

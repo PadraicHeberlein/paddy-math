@@ -45,4 +45,7 @@ public:
 // Exponential function for Complex numbers
 Complex exp(const Complex &c);
 
+// Norm (modulus) of a complex number
+double norm(const Complex &c);
+
 #endif // COMPLEX_HPP

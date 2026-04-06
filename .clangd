@@ -3,7 +3,14 @@ If:
 CompileFlags:
   Add: [
     "-I/home/padraic/Projects/paddy-math/include",
-    "-std=c++20"
+    "-std=c++20",
+    "-isystem", "/usr/include/c++/11",
+    "-isystem", "/usr/include/x86_64-linux-gnu/c++/11",
+    "-isystem", "/usr/include/c++/11/backward",
+    "-isystem", "/usr/lib/gcc/x86_64-linux-gnu/11/include",
+    "-isystem", "/usr/local/include",
+    "-isystem", "/usr/include/x86_64-linux-gnu",
+    "-isystem", "/usr/include"
   ]
 ---
 If:

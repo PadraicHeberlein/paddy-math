@@ -73,7 +73,7 @@ void complex_matrix_exp_backend(double* out, const double* in) {
     
     for(int k=1; k<=50; ++k) {
         // next_term = (term * scaled) / k
-        complex_matrix_mul_2x2_c(next_term, term, scaled);
+        pm_complex_matrix_mul_2x2(next_term, term, scaled);
         for(int i=0; i<8; ++i) {
             term[i] = next_term[i] / k;
             res[i] += term[i];
@@ -83,7 +83,7 @@ void complex_matrix_exp_backend(double* out, const double* in) {
     // 4. Square s times
     double sq[8];
     for(int j=0; j<s; ++j) {
-        complex_matrix_mul_2x2_c(sq, res, res);
+        pm_complex_matrix_mul_2x2(sq, res, res);
         memcpy(res, sq, sizeof(double)*8);
     }
     memcpy(out, res, sizeof(double)*8);

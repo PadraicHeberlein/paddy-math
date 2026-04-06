@@ -23,6 +23,45 @@ T exp_taylor(const T &x, int terms) {
   return res;
 }
 
+template <Algebra T> 
+T sin_taylor(const T &x, int terms) {
+  T res = x;
+  T current_term = x;
+  T x_squared = x * x;
+
+  for (int i = 3; i <= terms; i += 2) {
+    // (-1)^((i-1)/2) * x^i / i!
+    // current_term = previous_term * x^2 / (i * (i-1)) * -1
+    current_term = (current_term * x_squared) * (-1.0 / (static_cast<double>(i) * (i - 1)));
+    res = res + current_term;
+  }
+
+  return res;
+}
+
+template <Algebra T> 
+T cos_taylor(const T &x, int terms) {
+  auto get_identity = [&]() {
+    if constexpr (is_matrix<T>::value) {
+      return T::identity(x.get_rows());
+    } else {
+      return T(1);
+    }
+  };
+
+  T res = get_identity();
+  T current_term = get_identity();
+  T x_squared = x * x;
+
+  for (int i = 2; i <= terms; i += 2) {
+    // (-1)^(i/2) * x^i / i!
+    current_term = (current_term * x_squared) * (-1.0 / (static_cast<double>(i) * (i - 1)));
+    res = res + current_term;
+  }
+
+  return res;
+}
+
 template <>
 Complex exp_taylor<Complex>(const Complex &z, int) {
     double r, i;

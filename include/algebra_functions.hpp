@@ -20,6 +20,8 @@ struct is_matrix<Matrix<T>> : std::true_type {};
  * Suitable for any type satisfying the Algebra concept.
  */
 template <Algebra T> T exp_taylor(const T &x, int terms = 50);
+template <Algebra T> T sin_taylor(const T &x, int terms = 50);
+template <Algebra T> T cos_taylor(const T &x, int terms = 50);
 
 template <Algebra T> T factorial(int n);
 

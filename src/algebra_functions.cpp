@@ -6,7 +6,8 @@ T exp_taylor(const T &x, int terms) {
   T current_term = T(1);
 
   for (int i = 1; i <= terms; ++i) {
-    current_term = (current_term * x) * (1.0 / i);
+    // Multiply by x then scale by 1/i (scalar), avoiding Matrix/Matrix division
+    current_term = (current_term * x) * (1.0 / static_cast<double>(i));
     res = res + current_term;
   }
 

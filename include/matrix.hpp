@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <cassert>
+#include <cmath>
+#include <type_traits>
 #include "algebra_concepts.hpp"
 
 template <typename T>

@@ -22,11 +22,16 @@ paddy-math/
 │   ├── algebra_functions.hpp # Generic algebraic functions (Taylor)
 │   ├── complex.hpp          # Complex number class
 │   ├── matrix.hpp           # Template matrix class
-│   └── math_backend.h       # C interface for numerical kernels
+│   └── pm_math.h            # C interface for numerical kernels
 ├── src/                    # Source files (.cpp, .c, .S)
-│   ├── complex.cpp         # Complex class implementation
-│   ├── math_backend.c      # Numerical core in C
-│   └── arm_kernel.S        # ARM A64/NEON Assembly kernels
+│   ├── complex.cpp         # Complex number class implementation
+│   ├── matrix.cpp          # Matrix class implementation
+│   ├── algebra_functions.cpp
+│   ├── algebra_structures.cpp
+│   └── backend/
+│       ├── pm_math.c       # Numerical core in C
+│       └── arm/
+│           └── math_kernel.s # ARM A64/NEON Assembly kernels
 ├── tests/                  # Unit tests
 │   ├── test_complex.cpp
 │   ├── test_concepts.cpp

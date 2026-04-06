@@ -13,7 +13,7 @@ set(COMMON_SRCS
     src/matrix.cpp
     src/algebra_functions.cpp
     src/algebra_structures.cpp
-    src/backend/math.c
+    src/backend/pm_math.c
 )
 
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")

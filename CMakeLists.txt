@@ -22,6 +22,7 @@ set(COMMON_SRCS
     src/matrix.cpp
     src/algebra_functions.cpp
     src/algebra_structures.cpp
+    src/real.cpp
     src/backend/pm_math.c
 )
 
@@ -58,6 +59,9 @@ target_link_libraries(test_matrix PRIVATE paddy_math)
 
 add_executable(test_library tests/test_library.cpp)
 target_link_libraries(test_library PRIVATE paddy_math)
+
+add_executable(test_real tests/test_real.cpp)
+target_link_libraries(test_real PRIVATE paddy_math)
 
 # --- CLI Tool ---
 add_executable(pm-cli tools/pm-cli.cpp)

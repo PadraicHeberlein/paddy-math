@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Determine architecture and common sources
-set(COMMON_SRCS src/complex.cpp src/math_backend.c src/matrix.cpp)
+set(COMMON_SRCS src/complex.cpp src/math_backend.c src/matrix.cpp src/algebra_functions.cpp)
 
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")
     list(APPEND COMMON_SRCS src/arm_kernel.S)

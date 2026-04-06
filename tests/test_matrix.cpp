@@ -11,9 +11,10 @@
 int main() {
     std::cout << "Testing Matrix with Complex numbers..." << std::endl;
 
-    // 1. Matrix Construction and Addition
-    /* | 1  i |
-       | -i 1 |
+    // 1. Matrix Construction and Addition:
+    /*
+        | (1 + 0i)  (0 + 1i) |
+        | (0 - 1i)  (1 + 0i) |
     */
     Matrix<Complex> A(2, 2);
     A(0, 0) = Complex(1, 0); A(0, 1) = Complex(0, 1);

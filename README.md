@@ -10,6 +10,7 @@ A state-of-the-art C++ mathematical library specializing in complex numbers and 
 *   **🏎️ Optimized Backends**: High-performance implementations for ARM (NEON), RISC-V, x86 (Intel/SSE), and MIPS, automatically selecting the optimal assembly kernel for the host architecture.
 *   **📐 Advanced Numerical Stability**: Implementation of **Scaling & Squaring** for matrix exponentials, preventing divergence and ensuring precision for large inputs.
 *   **⚖️ Unified C/C++ Backend**: A stable C-backend seamlessly integrated with a modern C++ frontend.
+*   **🧬 Evolvable Numerical Core**: Focused implementation of the best-known numerical methods for each use case, allowing for the integration of new state-of-the-art discoveries.
 
 ---
 

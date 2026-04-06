@@ -29,3 +29,9 @@ After adding the CLI functionality:
 
 ---
 *Follow these steps to keep the PaddyMath CLI and library in sync!*
+
+## 🔬 Numerical Method Evolution
+Following the project blueprint, PaddyMath is designed to integrate the **best-known numerical methods** for each use case.
+1.  **Generic Implementations**: Use Taylor Series as the baseline for any type satisfying the `Algebra` concept.
+2.  **Specialized Optimizations**: For specific types (like `Complex` or `Matrix<double>`), we prioritize state-of-the-art methods (e.g., **Scaling and Squaring** for exponentials) and hand-optimized assembly kernels.
+3.  **Modular Integration**: When a new, more efficient numerical discovery is made, it should be integrated as a template specialization or a backend dispatch without breaking the high-level C++ API.

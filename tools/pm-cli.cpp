@@ -1,11 +1,18 @@
 #include <iostream>
 #include <vector>
-#include "CLI/CLI.hpp"
+#include "CLI/CLI.hpp" // IWYU pragma: keep
 #include "CLI/Timer.hpp"
 
 #include "matrix.hpp"
 #include "complex.hpp"
 #include "algebra_functions.hpp"
+
+#define RESET   "\033[0m"
+#define BOLD    "\033[1m"
+#define CYAN    "\033[36m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define MAGENTA "\033[35m"
 
 int main(int argc, char** argv) {
     CLI::App app{"PaddyMath CLI - Fast Matrix & Complex Calculations"};
@@ -33,21 +40,24 @@ int main(int argc, char** argv) {
             }
             std::cout << timer << std::endl;
         } else {
-            std::cout << "Input: " << z << "\n"
-                      << "exp(z): " << exp_taylor(z) << std::endl;
+            std::cout << CYAN << BOLD << "--- PaddyMath Complex Analysis ---" << RESET << "\n";
+            std::cout << YELLOW << "Input:  " << RESET << z << "\n"
+                      << GREEN  << "exp(z): " << RESET << exp_taylor(z) << std::endl;
         }
     });
 
     complex_sin_cmd->callback([&]() {
         Complex z(real, imag);
-        std::cout << "Input: " << z << "\n"
-                  << "sin(z): " << sin_taylor(z) << std::endl;
+        std::cout << CYAN << BOLD << "--- PaddyMath Complex Analysis ---" << RESET << "\n";
+        std::cout << YELLOW << "Input:  " << RESET << z << "\n"
+                  << GREEN  << "sin(z): " << RESET << sin_taylor(z) << std::endl;
     });
 
     complex_cos_cmd->callback([&]() {
         Complex z(real, imag);
-        std::cout << "Input: " << z << "\n"
-                  << "cos(z): " << cos_taylor(z) << std::endl;
+        std::cout << CYAN << BOLD << "--- PaddyMath Complex Analysis ---" << RESET << "\n";
+        std::cout << YELLOW << "Input:  " << RESET << z << "\n"
+                  << GREEN  << "cos(z): " << RESET << cos_taylor(z) << std::endl;
     });
 
     // --- Matrix Subcommand ---
@@ -76,23 +86,26 @@ int main(int argc, char** argv) {
             }
             std::cout << timer << std::endl;
         } else {
-            std::cout << "Input Matrix:\n" << m << "\n"
-                      << "Result of exp_taylor(m):\n" << exp_taylor(m) << std::endl;
+            std::cout << CYAN << BOLD << "--- PaddyMath Matrix Analysis ---" << RESET << "\n";
+            std::cout << YELLOW << "Input Matrix:" << RESET << "\n" << m << "\n"
+                      << GREEN  << "Result of exp_taylor(m):" << RESET << "\n" << exp_taylor(m) << std::endl;
         }
     });
 
     matrix_sin_cmd->callback([&]() {
         Matrix<double> m(2, 2);
         for(size_t i=0; i<4; ++i) m(i/2, i%2) = elements[i];
-        std::cout << "Input Matrix:\n" << m << "\n"
-                  << "Result of sin_taylor(m):\n" << sin_taylor(m) << std::endl;
+        std::cout << CYAN << BOLD << "--- PaddyMath Matrix Analysis ---" << RESET << "\n";
+        std::cout << YELLOW << "Input Matrix:" << RESET << "\n" << m << "\n"
+                  << GREEN  << "Result of sin_taylor(m):" << RESET << "\n" << sin_taylor(m) << std::endl;
     });
 
     matrix_cos_cmd->callback([&]() {
         Matrix<double> m(2, 2);
         for(size_t i=0; i<4; ++i) m(i/2, i%2) = elements[i];
-        std::cout << "Input Matrix:\n" << m << "\n"
-                  << "Result of cos_taylor(m):\n" << cos_taylor(m) << std::endl;
+        std::cout << CYAN << BOLD << "--- PaddyMath Matrix Analysis ---" << RESET << "\n";
+        std::cout << YELLOW << "Input Matrix:" << RESET << "\n" << m << "\n"
+                  << GREEN  << "Result of cos_taylor(m):" << RESET << "\n" << cos_taylor(m) << std::endl;
     });
 
     CLI11_PARSE(app, argc, argv);

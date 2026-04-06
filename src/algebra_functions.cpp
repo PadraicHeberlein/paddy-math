@@ -116,3 +116,16 @@ template Matrix<double> factorial<Matrix<double>>(int);
 template Matrix<Complex> factorial<Matrix<Complex>>(int);
 
 template double exp_generic<double>(const double &);
+
+// Explicit Instantiations for sin_taylor and cos_taylor
+template double sin_taylor<double>(const double &, int);
+template double cos_taylor<double>(const double &, int);
+
+template Complex sin_taylor<Complex>(const Complex &, int);
+template Complex cos_taylor<Complex>(const Complex &, int);
+
+template Matrix<double> sin_taylor<Matrix<double>>(const Matrix<double> &, int);
+template Matrix<double> cos_taylor<Matrix<double>>(const Matrix<double> &, int);
+
+template Matrix<Complex> sin_taylor<Matrix<Complex>>(const Matrix<Complex> &, int);
+template Matrix<Complex> cos_taylor<Matrix<Complex>>(const Matrix<Complex> &, int);

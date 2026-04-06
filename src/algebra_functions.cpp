@@ -1,4 +1,5 @@
 #include "../include/algebra_functions.hpp"
+#include "../include/pm_math.h"
 
 template <Algebra T> 
 T exp_taylor(const T &x, int terms) {
@@ -22,6 +23,13 @@ T exp_taylor(const T &x, int terms) {
   return res;
 }
 
+template <>
+Complex exp_taylor<Complex>(const Complex &z, int) {
+    double r, i;
+    complex_exp_backend(&r, &i, z.real(), z.imag());
+    return Complex(r, i);
+}
+
 template <Algebra T> 
 T factorial(int n) {
   T res = T(1);
@@ -39,7 +47,6 @@ T exp_generic(const T &x) {
 
 // Explicit Template Instantiation
 template double exp_taylor<double>(const double &, int);
-template Complex exp_taylor<Complex>(const Complex &, int);
 template Matrix<double> exp_taylor<Matrix<double>>(const Matrix<double> &, int);
 template Matrix<Complex> exp_taylor<Matrix<Complex>>(const Matrix<Complex> &, int);
 

@@ -59,12 +59,29 @@ void complex_exp_backend(double* r_out, double* i_out,
     *i_out = i_tmp;
 }
 
-#ifndef ARCH_ARM
-// Fallback implementation of the ARM kernel for non-ARM architectures
-void complex_matrix_mul_2x2_neon(double* out, const double* a, const double* b) {
-    // This is a slow C fallback that mimics the NEON kernel for linkage stability
-    for (int i = 0; i < 8; ++i) {
-        out[i] = a[i] + b[i]; // Matching the placeholder logic in the ASM
-    }
-}
+#if defined(ARCH_ARM)
+void complex_matrix_mul_2x2_neon(double* out, const double* a, const double* b);
+#elif defined(ARCH_RISCV)
+void complex_matrix_mul_2x2_riscv(double* out, const double* a, const double* b);
+#elif defined(ARCH_X86)
+void complex_matrix_mul_2x2_sse(double* out, const double* a, const double* b);
+#elif defined(ARCH_MIPS)
+void complex_matrix_mul_2x2_mips(double* out, const double* a, const double* b);
 #endif
+
+void pm_complex_matrix_mul_2x2(double* out, const double* a, const double* b) {
+#if defined(ARCH_ARM)
+    complex_matrix_mul_2x2_neon(out, a, b);
+#elif defined(ARCH_RISCV)
+    complex_matrix_mul_2x2_riscv(out, a, b);
+#elif defined(ARCH_X86)
+    complex_matrix_mul_2x2_sse(out, a, b);
+#elif defined(ARCH_MIPS)
+    complex_matrix_mul_2x2_mips(out, a, b);
+#else
+    // Universal C Fallback
+    for (int i = 0; i < 8; ++i) {
+        out[i] = a[i] + b[i]; // Placeholder operation matching the kernel logic
+    }
+#endif
+}

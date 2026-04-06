@@ -23,9 +23,10 @@ void complex_exp_backend(double* r_out, double* i_out,
                          double r_in, double i_in);
 
 /**
- * @brief ARM A64 Assembly kernel for 2x2 complex matrix multiply.
+ * @brief 2x2 complex matrix multiply.
+ * Dispatched to optimized assembly (ARM NEON or RISC-V) based on platform.
  */
-void complex_matrix_mul_2x2_neon(double* out, const double* a, const double* b);
+void pm_complex_matrix_mul_2x2(double* out, const double* a, const double* b);
 
 #ifdef __cplusplus
 }

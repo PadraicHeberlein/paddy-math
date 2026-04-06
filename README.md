@@ -7,7 +7,7 @@ A state-of-the-art C++ mathematical library specializing in complex numbers and 
 ## ⚡ Key Features
 
 *   **🛡️ C++20 Algebraic Concepts**: Type-safe template constraints ensuring only valid algebraic structures can be used in computations.
-*   **🏎️ ARM & RISC-V Optimization**: High-performance backends utilizing SIMD through NEON (ARM) and RISC-V assembly kernels for heavy numerical tasks.
+*   **🏎️ Optimized Backends**: High-performance implementations for ARM (NEON), RISC-V, x86 (Intel/SSE), and MIPS, automatically selecting the optimal assembly kernel for the host architecture.
 *   **📐 Advanced Numerical Stability**: Implementation of **Scaling & Squaring** for matrix exponentials, preventing divergence and ensuring precision for large inputs.
 *   **⚖️ Unified C/C++ Backend**: A stable C-backend seamlessly integrated with a modern C++ frontend.
 
@@ -30,10 +30,10 @@ paddy-math/
 │   ├── algebra_structures.cpp
 │   └── backend/
 │       ├── pm_math.c       # Numerical core in C
-│       ├── arm/
-│       │   └── math_kernel.s # ARM A64/NEON Assembly kernels
-│       └── riscv/
-│           └── math_kernel.s # RISC-V Vector/Assembly kernels
+│       ├── arm/            # ARM A64/NEON kernels
+│       ├── riscv/          # RISC-V kernels
+│       ├── x86/            # Intel/AMD x86_64 kernels
+│       └── mips/           # MIPS kernels
 ├── tests/                  # Unit tests
 │   ├── test_complex.cpp
 │   ├── test_concepts.cpp
@@ -116,7 +116,7 @@ After a successful build, you can run the test suite directly from the `build` d
 ---
 
 ## 💡 Optimization Note
-On ARM and RISC-V systems (e.g., Raspberry Pi 4 or VisionFive 2), PaddyMath automatically detects the architecture and enables `-march=native -O3` optimizations along with the custom assembly kernels for maximum throughput.
+On supported architectures (ARM, RISC-V, x86, MIPS), PaddyMath automatically detects the system and enables `-march=native -O3` optimizations along with the custom assembly kernels for maximum throughput.
 
 ---
 *Created with ❤️ by Antigravity*

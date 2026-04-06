@@ -13,14 +13,21 @@ int main() {
 
     // 1. Matrix Construction and Addition:
     /*
-        | (1 + 0i)  (0 + 1i) |
-        | (0 - 1i)  (1 + 0i) |
+        A = | (1 + 0i)  (0 + 1i) |
+            | (0 - 1i)  (1 + 0i) |
     */
     Matrix<Complex> A(2, 2);
     A(0, 0) = Complex(1, 0); A(0, 1) = Complex(0, 1);
     A(1, 0) = Complex(0, -1); A(1, 1) = Complex(1, 0);
-
+    /*
+        B = | (1 + 0i)  (0 + 0i) |
+            | (0 - 0i)  (1 + 0i) |
+    */
     Matrix<Complex> B = Matrix<Complex>::identity(2);
+    /*
+        C = | (2 + 0i)  (0 + 1i) |
+            | (0 - 1i)  (2 + 0i) |
+    */
     Matrix<Complex> C = A + B;
 
     std::cout << "A:\n" << A << std::endl;

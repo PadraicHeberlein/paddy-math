@@ -48,4 +48,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_concepts.dir/DependInfo.cmake"
   "CMakeFiles/test_complex.dir/DependInfo.cmake"
+  "CMakeFiles/test_matrix.dir/DependInfo.cmake"
   )

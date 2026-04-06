@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <cassert>
+#include <cstddef>
 #include <cmath>
 #include <type_traits>
 #include "algebra_concepts.hpp"
@@ -11,24 +12,24 @@
 template <typename T>
 class Matrix {
 private:
-    size_t rows, cols;
+    std::size_t rows, cols;
     std::vector<T> data;
 
 public:
-    Matrix(size_t r, size_t c) : rows(r), cols(c), data(r * c, T(0)) {}
-    Matrix(size_t r, size_t c, const std::vector<T>& d) : rows(r), cols(c), data(d) {
+    Matrix(std::size_t r, std::size_t c) : rows(r), cols(c), data(r * c, T(0)) {}
+    Matrix(std::size_t r, std::size_t c, const std::vector<T>& d) : rows(r), cols(c), data(d) {
         assert(d.size() == r * c);
     }
 
-    size_t get_rows() const { return rows; }
-    size_t get_cols() const { return cols; }
+    std::size_t get_rows() const { return rows; }
+    std::size_t get_cols() const { return cols; }
 
-    T& operator()(size_t r, size_t c) { return data[r * cols + c]; }
-    const T& operator()(size_t r, size_t c) const { return data[r * cols + c]; }
+    T& operator()(std::size_t r, std::size_t c) { return data[r * cols + c]; }
+    const T& operator()(std::size_t r, std::size_t c) const { return data[r * cols + c]; }
 
-    static Matrix identity(size_t n) {
+    static Matrix identity(std::size_t n) {
         Matrix res(n, n);
-        for (size_t i = 0; i < n; ++i) res(i, i) = T(1);
+        for (std::size_t i = 0; i < n; ++i) res(i, i) = T(1);
         return res;
     }
 

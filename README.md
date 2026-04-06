@@ -7,7 +7,7 @@ A state-of-the-art C++ mathematical library specializing in complex numbers and 
 ## ⚡ Key Features
 
 *   **🛡️ C++20 Algebraic Concepts**: Type-safe template constraints ensuring only valid algebraic structures can be used in computations.
-*   **🏎️ ARM A64/NEON Optimization**: High-performance backend utilizing SIMD (Single Instruction, Multiple Data) through NEON assembly for heavy numerical tasks.
+*   **🏎️ ARM & RISC-V Optimization**: High-performance backends utilizing SIMD through NEON (ARM) and RISC-V assembly kernels for heavy numerical tasks.
 *   **📐 Advanced Numerical Stability**: Implementation of **Scaling & Squaring** for matrix exponentials, preventing divergence and ensuring precision for large inputs.
 *   **⚖️ Unified C/C++ Backend**: A stable C-backend seamlessly integrated with a modern C++ frontend.
 
@@ -30,8 +30,10 @@ paddy-math/
 │   ├── algebra_structures.cpp
 │   └── backend/
 │       ├── pm_math.c       # Numerical core in C
-│       └── arm/
-│           └── math_kernel.s # ARM A64/NEON Assembly kernels
+│       ├── arm/
+│       │   └── math_kernel.s # ARM A64/NEON Assembly kernels
+│       └── riscv/
+│           └── math_kernel.s # RISC-V Vector/Assembly kernels
 ├── tests/                  # Unit tests
 │   ├── test_complex.cpp
 │   ├── test_concepts.cpp
@@ -72,6 +74,34 @@ This will generate the following test binaries in the `build` directory:
 
 ---
 
+## 🚀 Command Line Interface (CLI)
+
+PaddyMath includes a powerful CLI for quick calculations from your terminal.
+
+### Building the CLI
+The CLI is automatically built when you follow the standard installation steps:
+```bash
+cd build
+make pm-cli
+```
+
+### Usage Examples
+You can use the CLI for both complex numbers and matrix operations:
+
+#### 🟢 Complex Numbers
+Calculate the exponential of a complex number:
+```bash
+./pm-cli complex --real 1.0 --imag 1.5
+```
+
+#### 🟡 Matrix Operations
+Calculate the matrix exponential for a 2x2 matrix:
+```bash
+./pm-cli matrix --elements 1 2 3 4
+```
+
+---
+
 ## 🧪 Running Tests
 
 After a successful build, you can run the test suite directly from the `build` directory:
@@ -86,7 +116,7 @@ After a successful build, you can run the test suite directly from the `build` d
 ---
 
 ## 💡 Optimization Note
-On ARM-based systems (like Raspberry Pi 4), PaddyMath automatically detects the architecture and enables `-march=native -O3` optimizations along with the custom ARM Assembly kernels for maximum throughput.
+On ARM and RISC-V systems (e.g., Raspberry Pi 4 or VisionFive 2), PaddyMath automatically detects the architecture and enables `-march=native -O3` optimizations along with the custom assembly kernels for maximum throughput.
 
 ---
 *Created with ❤️ by Antigravity*

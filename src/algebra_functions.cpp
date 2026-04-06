@@ -2,8 +2,16 @@
 
 template <Algebra T> 
 T exp_taylor(const T &x, int terms) {
-  T res = T(1);
-  T current_term = T(1);
+  auto get_identity = [&]() {
+    if constexpr (is_matrix<T>::value) {
+      return T::identity(x.get_rows());
+    } else {
+      return T(1);
+    }
+  };
+
+  T res = get_identity();
+  T current_term = get_identity();
 
   for (int i = 1; i <= terms; ++i) {
     // Multiply by x then scale by 1/i (scalar), avoiding Matrix/Matrix division

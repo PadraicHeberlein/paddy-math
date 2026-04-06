@@ -7,7 +7,7 @@
 #include "algebra_structures.hpp"
 
 template <typename T>
-class Matrix : public RingInterface<Matrix<T>>, public VectorSpaceInterface<Matrix<T>> {
+class Matrix : public AlgebraInterface<Matrix<T>> {
 private:
     std::size_t rows, cols;
     std::vector<T> data;

@@ -31,4 +31,16 @@ struct VectorSpaceInterface : public GroupInterface<Derived> {
         VectorSpaceInterface() = default;
 };
 
+template <typename Derived, typename Scalar = double>
+struct AlgebraInterface : public RingInterface<Derived>, public VectorSpaceInterface<Derived, Scalar> {
+    protected:
+        AlgebraInterface() = default;
+};
+
+template <typename Derived, typename Scalar = double>
+struct NormedAlgebraInterface : public AlgebraInterface<Derived, Scalar> {
+    protected:
+        NormedAlgebraInterface() = default;
+};
+
 #endif // ALGEBRA_STRUCTURES_HPP

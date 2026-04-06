@@ -30,6 +30,29 @@ Complex exp_taylor<Complex>(const Complex &z, int) {
     return Complex(r, i);
 }
 
+template <>
+Matrix<double> exp_taylor<Matrix<double>>(const Matrix<double>& m, int) {
+    double in[8] = {m(0,0), 0, m(0,1), 0, m(1,0), 0, m(1,1), 0};
+    double out[8];
+    complex_matrix_exp_backend(out, in);
+    Matrix<double> res(2, 2);
+    res(0,0) = out[0]; res(0,1) = out[2];
+    res(1,0) = out[4]; res(1,1) = out[6];
+    return res;
+}
+
+template <>
+Matrix<Complex> exp_taylor<Matrix<Complex>>(const Matrix<Complex>& m, int) {
+    double in[8] = {m(0,0).real(), m(0,0).imag(), m(0,1).real(), m(0,1).imag(),
+                     m(1,0).real(), m(1,0).imag(), m(1,1).real(), m(1,1).imag()};
+    double out[8];
+    complex_matrix_exp_backend(out, in);
+    Matrix<Complex> res(2, 2);
+    res(0,0) = {out[0], out[1]}; res(0,1) = {out[2], out[3]};
+    res(1,0) = {out[4], out[5]}; res(1,1) = {out[6], out[7]};
+    return res;
+}
+
 template <Algebra T> 
 T factorial(int n) {
   T res = T(1);
@@ -47,8 +70,6 @@ T exp_generic(const T &x) {
 
 // Explicit Template Instantiation
 template double exp_taylor<double>(const double &, int);
-template Matrix<double> exp_taylor<Matrix<double>>(const Matrix<double> &, int);
-template Matrix<Complex> exp_taylor<Matrix<Complex>>(const Matrix<Complex> &, int);
 
 template double factorial<double>(int);
 template Complex factorial<Complex>(int);

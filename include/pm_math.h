@@ -23,6 +23,12 @@ void complex_exp_backend(double* r_out, double* i_out,
                          double r_in, double i_in);
 
 /**
+ * @brief Matrix exponential for 2x2 complex matrix.
+ * Uses scaling and squaring for numerical stability.
+ */
+void complex_matrix_exp_backend(double* out, const double* in);
+
+/**
  * @brief 2x2 complex matrix multiply.
  * Dispatched to optimized assembly (ARM NEON or RISC-V) based on platform.
  */

@@ -1,5 +1,9 @@
+#ifndef ALGEBRA_CONCEPTS_HPP
+#define ALGEBRA_CONCEPTS_HPP
+
 #include <concepts>
 #include <type_traits>
+#include <cmath>
 
 template <typename T>
 concept Scalar = std::is_arithmetic_v<T>; // A basic rule: T must be a number
@@ -29,3 +33,12 @@ template<typename T>
 concept NormedAlgebra = Ring<T> && requires(T a) {
     { norm(a) } -> std::floating_point;  
 };
+
+// Default norm for scalar types
+template <typename T>
+requires std::is_arithmetic_v<T>
+inline double norm(T x) {
+    return std::abs(static_cast<double>(x));
+}
+
+#endif // ALGEBRA_CONCEPTS_HPP

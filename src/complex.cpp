@@ -44,12 +44,6 @@ std::ostream &operator<<(std::ostream &os, const Complex &c) {
     return os;
 }
 
-// Exponential function for Complex numbers
-Complex exp(const Complex &c) {
-    double exp_real = std::exp(c.real());
-    return Complex(exp_real * std::cos(c.imag()), exp_real * std::sin(c.imag()));
-}
-
 double norm(const Complex &c) {
     return std::sqrt(c.real() * c.real() + c.imag() * c.imag());
 }

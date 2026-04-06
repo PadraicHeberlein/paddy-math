@@ -45,7 +45,7 @@ void complex_exp_backend(double* r_out, double* i_out,
     
     // 3. Taylor series on scaled input
     double r_tmp, i_tmp;
-    complex_exp_taylor_kernel(&r_tmp, &i_tmp, r_scaled, i_scaled, 15);
+    complex_exp_taylor_kernel(&r_tmp, &i_tmp, r_scaled, i_scaled, 50);
     
     // 4. Repeated squaring: z_res = (z_tmp)^(2^s)
     for (int j = 0; j < s; ++j) {

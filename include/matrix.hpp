@@ -20,6 +20,8 @@ public:
     Matrix(std::size_t r, std::size_t c, const std::vector<T>& d) : rows(r), cols(c), data(d) {
         assert(d.size() == r * c);
     }
+    // Constructor from scalar to satisfy Group/Ring identity requirements
+    Matrix(const T& value) : rows(1), cols(1), data(1, value) {}
 
     std::size_t get_rows() const { return rows; }
     std::size_t get_cols() const { return cols; }
@@ -37,6 +39,19 @@ public:
         assert(rows == other.rows && cols == other.cols);
         Matrix res(rows, cols);
         for (size_t i = 0; i < data.size(); ++i) res.data[i] = data[i] + other.data[i];
+        return res;
+    }
+
+    Matrix operator-() const {
+        Matrix res(rows, cols);
+        for (size_t i = 0; i < data.size(); ++i) res.data[i] = -data[i];
+        return res;
+    }
+
+    Matrix operator-(const Matrix& other) const {
+        assert(rows == other.rows && cols == other.cols);
+        Matrix res(rows, cols);
+        for (size_t i = 0; i < data.size(); ++i) res.data[i] = data[i] - other.data[i];
         return res;
     }
 
@@ -58,6 +73,12 @@ public:
     Matrix operator*(double scalar) const {
         Matrix res(rows, cols);
         for (size_t i = 0; i < data.size(); ++i) res.data[i] = data[i] * scalar;
+        return res;
+    }
+
+    Matrix operator/(double scalar) const {
+        Matrix res(rows, cols);
+        for (size_t i = 0; i < data.size(); ++i) res.data[i] = data[i] / scalar;
         return res;
     }
 
@@ -84,55 +105,36 @@ public:
         }
         return os;
     }
+
+    bool operator==(const Matrix& other) const {
+        return rows == other.rows && cols == other.cols && data == other.data;
+    }
+
+    bool operator!=(const Matrix& other) const {
+        return !(*this == other);
+    }
 };
 
 /**
- * @brief Matrix Exponentiation using Scaling and Squaring
+ * @brief Frobenius Norm for a Matrix
  */
 template <typename T>
-Matrix<T> exp(const Matrix<T>& A, int terms = 15) {
-    assert(A.get_rows() == A.get_cols());
-    size_t n = A.get_rows();
-    
-    // 1. Calculate a simple Frobenius-style norm for scaling
-    double matrix_norm = 0.0;
-    for (size_t i = 0; i < n; ++i) {
-        for (size_t j = 0; j < n; ++j) {
-            T val = A(i, j);
+inline double norm(const Matrix<T>& m) {
+    double res = 0.0;
+    for (std::size_t i = 0; i < m.get_rows(); ++i) {
+        for (std::size_t j = 0; j < m.get_cols(); ++j) {
+            T val = m(i, j);
             if constexpr (std::is_arithmetic_v<T>) {
-                matrix_norm += std::abs((double)val);
+                res += static_cast<double>(val) * static_cast<double>(val);
             } else if constexpr (NormedAlgebra<T>) {
-                matrix_norm += norm(val);
+                double val_norm = norm(val);
+                res += val_norm * val_norm;
             } else {
-                // Fallback for types without a defined norm
-                matrix_norm += 1.0; 
+                res += 1.0; 
             }
         }
     }
-
-    // 2. Scaling: Find s such that ||A / 2^s|| < 0.5
-    int s = 0;
-    if (matrix_norm > 0.5) {
-        s = (int)std::ceil(std::log2(matrix_norm / 0.5));
-    }
-
-    Matrix<T> A_scaled = A * (1.0 / std::pow(2.0, s));
-
-    // 3. Taylor series on scaled matrix
-    Matrix<T> res = Matrix<T>::identity(n);
-    Matrix<T> term = Matrix<T>::identity(n);
-    
-    for (int i = 1; i <= terms; ++i) {
-        term = (term * A_scaled) * (1.0 / i);
-        res = res + term;
-    }
-    
-    // 4. Squaring: res = res^(2^s)
-    for (int i = 0; i < s; ++i) {
-        res = res * res;
-    }
-    
-    return res;
+    return std::sqrt(res);
 }
 
 #endif // MATRIX_HPP

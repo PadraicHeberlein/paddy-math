@@ -1,5 +1,6 @@
 #include "../include/matrix.hpp"
 #include "../include/complex.hpp"
+#include "../include/algebraic_functions.hpp" // IWYU pragma: keep
 
 // Explicit Template Instantiation
 // This compiles the code for common types into a single object file, 

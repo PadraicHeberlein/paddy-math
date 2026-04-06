@@ -1,5 +1,6 @@
-#include "../include/complex.hpp"
 #include <iostream>
+#include <cmath>
+#include "../include/complex.hpp"
 
 Complex Complex::operator-() const { return {-r, -i}; }
 
@@ -38,6 +39,13 @@ Complex Complex::operator/(double scalar) const {
 }
 
 std::ostream &operator<<(std::ostream &os, const Complex &c) {
-  os << c.r << " + " << c.i << "i";
-  return os;
+    // Existing overload for printing Complex
+    os << c.r << " + " << c.i << "i";
+    return os;
+}
+
+// Exponential function for Complex numbers
+Complex exp(const Complex &c) {
+    double exp_real = std::exp(c.real());
+    return Complex(exp_real * std::cos(c.imag()), exp_real * std::sin(c.imag()));
 }

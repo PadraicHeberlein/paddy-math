@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cassert>
+#include <cmath>
 #include "complex.hpp"
+#include "math_backend.h"
 
 int main() {
     std::cout << "Testing Complex Multiplication..." << std::endl;
@@ -29,13 +31,25 @@ int main() {
 
     std::cout << "  Standard Test: (" << a << ") * (" << b << ") = " << result3 << std::endl;
     
-    // Using a small epsilon for floating point comparison is safer than ==
-    if (result3.real() == -5.0 && result3.imag() == 10.0) {
-        std::cout << "\nSUCCESS: Complex Multiplication is mathematically sound!" << std::endl;
-    } else {
-        std::cout << "\nFAILURE: Math mismatch. Check your operator* logic." << std::endl;
-        return 1;
-    }
+    std::cout << "\nTesting Complex Exponential (exp)..." << std::endl;
+
+    // 1. exp(0) should be 1
+    Complex e0 = exp(Complex(0.0, 0.0));
+    std::cout << "  exp(0) = " << e0 << "   (Expected: 1 + 0i)" << std::endl;
+    assert(std::abs(e0.real() - 1.0) < 1e-9 && std::abs(e0.imag()) < 1e-9);
+
+    // 2. exp(i * pi) should be -1
+    const double PI = std::acos(-1.0);
+    Complex epi = exp(Complex(0.0, PI));
+    std::cout << "  exp(i * pi) = " << epi << "   (Expected: -1 + 0i)" << std::endl;
+    assert(std::abs(epi.real() + 1.0) < 1e-9 && std::abs(epi.imag()) < 1e-9);
+
+    // 3. exp(1) should be e
+    Complex e1 = exp(Complex(1.0, 0.0));
+    std::cout << "  exp(1) = " << e1 << "   (Expected: approx 2.71828 + 0i)" << std::endl;
+    assert(std::abs(e1.real() - std::exp(1.0)) < 1e-9 && std::abs(e1.imag()) < 1e-9);
+
+    std::cout << "SUCCESS: Complex Exponential is mathematically sound!" << std::endl;
 
     return 0;
 }

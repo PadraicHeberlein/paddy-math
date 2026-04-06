@@ -1,5 +1,6 @@
 #ifndef COMPLEX_HPP
 #define COMPLEX_HPP
+#include <ostream>
 
 class Complex {
 private:
@@ -40,5 +41,8 @@ public:
   }
   friend std::ostream &operator<<(std::ostream &os, const Complex &c);
 };
+
+// Exponential function for Complex numbers
+Complex exp(const Complex &c);
 
 #endif // COMPLEX_HPP

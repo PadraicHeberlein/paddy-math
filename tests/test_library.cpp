@@ -1,6 +1,5 @@
 #include "complex.hpp"
 #include "matrix.hpp"
-#include "algebraic_functions.hpp" // IWYU pragma: keep
 #include <iostream>
 #include <cmath>
 

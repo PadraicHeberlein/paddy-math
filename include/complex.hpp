@@ -42,6 +42,9 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const Complex &c);
 };
 
+// Exponential function for Complex numbers
+Complex exp(const Complex& c);
+
 // Norm (modulus) of a complex number
 double norm(const Complex &c);
 

@@ -2,7 +2,6 @@
 #include <cassert>
 #include <cmath>
 #include "complex.hpp"
-#include "algebraic_functions.hpp" // IWYU pragma: keep
 
 int main() {
     std::cout << "Testing Complex Multiplication..." << std::endl;

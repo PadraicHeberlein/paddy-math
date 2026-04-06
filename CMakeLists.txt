@@ -26,3 +26,6 @@ target_include_directories(test_matrix PRIVATE ${CMAKE_SOURCE_DIR}/include)
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm")
     target_compile_options(test_matrix PRIVATE -march=native -O3)
 endif()
+
+add_executable(test_library tests/test_library.cpp ${COMMON_SRCS})
+target_include_directories(test_library PRIVATE ${CMAKE_SOURCE_DIR}/include)

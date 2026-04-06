@@ -49,4 +49,7 @@ public:
 template <typename T>
 double norm(const Matrix<T>& m);
 
+template <typename T>
+Matrix<T> exp(const Matrix<T>& A, int terms = 50);
+
 #endif // MATRIX_HPP

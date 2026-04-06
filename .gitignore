@@ -4,6 +4,8 @@
 !.vscode/settings.json
 *.swp
 *.swo
+.clangd/
+compile_commands.json
 
 # --- Build Directories ---
 build/

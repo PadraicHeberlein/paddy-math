@@ -2,7 +2,7 @@
 #include <cassert>
 #include "matrix.hpp"
 #include "complex.hpp"
-#include "algebraic_functions.hpp" // IWYU pragma: keep
+
 
 #ifdef __aarch64__
 #include "math_backend.h"

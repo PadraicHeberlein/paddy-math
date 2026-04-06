@@ -1,6 +1,6 @@
 #include "../include/matrix.hpp"
 #include "../include/complex.hpp"
-#include "../include/algebraic_functions.hpp" // IWYU pragma: keep
+#include "../include/algebra_concepts.hpp"
 #include <cassert>
 #include <cmath>
 
@@ -141,6 +141,52 @@ double norm(const Matrix<T>& m) {
         }
     }
     return std::sqrt(res);
+}
+
+template <typename T>
+Matrix<T> exp(const Matrix<T>& A, int terms) {
+    // Scaling and Squaring algorithm
+    std::size_t n = A.get_rows();
+    assert(A.get_rows() == A.get_cols());
+
+    // 1. Calculate norm for scaling
+    double matrix_norm = 0.0;
+    for (std::size_t i = 0; i < n; ++i) {
+        for (std::size_t j = 0; j < n; ++j) {
+            T val = A(i, j);
+            if constexpr (std::is_arithmetic_v<T>) {
+                matrix_norm += std::abs(static_cast<double>(val));
+            } else if constexpr (NormedAlgebra<T>) {
+                matrix_norm += norm(val);
+            } else {
+                matrix_norm += 1.0; 
+            }
+        }
+    }
+
+    // 2. Scaling
+    int s = 0;
+    if (matrix_norm > 0.5) {
+        s = static_cast<int>(std::ceil(std::log2(matrix_norm / 0.5)));
+    }
+
+    Matrix<T> A_scaled = A * (1.0 / std::pow(2.0, s));
+
+    // 3. Taylor series on scaled matrix
+    Matrix<T> res = Matrix<T>::identity(n);
+    Matrix<T> current_term = Matrix<T>::identity(n);
+    
+    for (int i = 1; i <= terms; ++i) {
+        current_term = (current_term * A_scaled) * (1.0 / i);
+        res = res + current_term;
+    }
+    
+    // 4. Squaring
+    for (int i = 0; i < s; ++i) {
+        res = res * res;
+    }
+    
+    return res;
 }
 
 // Explicit Template Instantiation

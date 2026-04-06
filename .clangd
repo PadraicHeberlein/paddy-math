@@ -2,8 +2,7 @@ If:
   PathMatch: .*\.(cpp|hpp|cc|cxx)
 CompileFlags:
   Add: [
-    "-I/usr/include/c++/11",
-    "-I/usr/include/x86_64-linux-gnu/c++/11",
+    "-I/home/padraic/Projects/paddy-math/include",
     "-std=c++20"
   ]
 ---

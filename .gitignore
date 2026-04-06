@@ -25,6 +25,12 @@ dist/
 *.elf
 *.bin
 *.hex
+test_*
+test_library
+test_library_no_alg
+test_complex
+test_matrix
+test_concepts
 
 # --- CMake Artifacts ---
 CMakeCache.txt

@@ -5,6 +5,7 @@
 #include "complex.hpp"
 #include "matrix.hpp"
 #include <cmath>
+#include <cassert>
 
 /**
  * @brief Generic Exponential function using Taylor Series expansion.

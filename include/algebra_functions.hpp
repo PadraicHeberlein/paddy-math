@@ -1,5 +1,5 @@
-#ifndef ALGEBRAIC_FUNCTIONS_HPP
-#define ALGEBRAIC_FUNCTIONS_HPP
+#ifndef ALGEBRA_FUNCTIONS_HPP
+#define ALGEBRA_FUNCTIONS_HPP
 
 #include "algebra_concepts.hpp"
 #include "complex.hpp"
@@ -9,14 +9,14 @@
 
 /**
  * @brief Generic Exponential function using Taylor Series expansion.
- * Suitable for any type satisfying the NormedAlgebra concept.
+ * Suitable for any type satisfying the Algebra concept.
  * 
- * @tparam T A type that satisfies NormedAlgebra (Ring with a norm function)
+ * @tparam T A type that satisfies Algebra (Ring and a Vector Space)
  * @param x The input value
- * @param terms Number of terms in the Taylor series (default 15)
+ * @param terms Number of terms in the Taylor series (default 50)
  * @return T The computed value of e^x
  */
-template <NormedAlgebra T>
+template <Algebra T>
 T exp_taylor(const T& x, int terms = 50) {
     T res = T(1); 
     T current_term = T(1);
@@ -30,13 +30,13 @@ T exp_taylor(const T& x, int terms = 50) {
 }
 
 /**
- * @brief Fallback generic exp for other NormedAlgebra types
+ * @brief Fallback generic exp for other Algebra types
  * that don't have a specialized analytical exp.
  */
-template <NormedAlgebra T>
+template <Algebra T>
 requires (!std::is_same_v<T, Complex> && !std::is_same_v<T, Matrix<typename T::value_type>>) // Avoid ambiguity
 T exp_generic(const T& x) {
     return exp_taylor(x);
 }
 
-#endif // ALGEBRAIC_FUNCTIONS_HPP
+#endif // ALGEBRA_FUNCTIONS_HPP

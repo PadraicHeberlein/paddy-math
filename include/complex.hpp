@@ -1,8 +1,9 @@
 #ifndef COMPLEX_HPP
 #define COMPLEX_HPP
 #include <ostream>
+#include "algebra_structures.hpp"
 
-class Complex {
+class Complex : public FieldInterface<Complex>, public VectorSpaceInterface<Complex> {
 private:
   double r, i;
 

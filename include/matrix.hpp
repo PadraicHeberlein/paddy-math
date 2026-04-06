@@ -4,9 +4,10 @@
 #include <vector>
 #include <iostream>
 #include <cstddef>
+#include "algebra_structures.hpp"
 
 template <typename T>
-class Matrix {
+class Matrix : public RingInterface<Matrix<T>>, public VectorSpaceInterface<Matrix<T>> {
 private:
     std::size_t rows, cols;
     std::vector<T> data;

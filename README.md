@@ -19,9 +19,10 @@ A state-of-the-art C++ mathematical library specializing in complex numbers and 
 paddy-math/
 ├── include/                # Header files (.hpp, .h)
 │   ├── algebra_concepts.hpp # C++20 template constraints
-│   ├── complex.hpp        # Complex number class
-│   ├── matrix.hpp         # Template matrix class
-│   └── math_backend.h      # C interface for numerical kernels
+│   ├── algebra_functions.hpp # Generic algebraic functions (Taylor)
+│   ├── complex.hpp          # Complex number class
+│   ├── matrix.hpp           # Template matrix class
+│   └── math_backend.h       # C interface for numerical kernels
 ├── src/                    # Source files (.cpp, .c, .S)
 │   ├── complex.cpp         # Complex class implementation
 │   ├── math_backend.c      # Numerical core in C
@@ -29,6 +30,7 @@ paddy-math/
 ├── tests/                  # Unit tests
 │   ├── test_complex.cpp
 │   ├── test_concepts.cpp
+│   ├── test_library.cpp
 │   └── test_matrix.cpp
 └── CMakeLists.txt         # Build system configuration
 ```
@@ -61,6 +63,7 @@ This will generate the following test binaries in the `build` directory:
 - `test_concepts`
 - `test_complex`
 - `test_matrix`
+- `test_library`
 
 ---
 
@@ -72,6 +75,7 @@ After a successful build, you can run the test suite directly from the `build` d
 ./test_concepts
 ./test_complex
 ./test_matrix
+./test_library
 ```
 
 ---

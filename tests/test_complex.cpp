@@ -2,7 +2,6 @@
 #include <cassert>
 #include <cmath>
 #include "complex.hpp"
-#include "math_backend.h"
 
 int main() {
     std::cout << "Testing Complex Multiplication..." << std::endl;

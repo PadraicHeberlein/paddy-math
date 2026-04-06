@@ -1,4 +1,11 @@
 #include "algebra_concepts.hpp"
-#include <concepts>
+#include "complex.hpp"
+#include <iostream>
 
-int main() { return 0; }
+// This line will fail to compile if Complex is NOT a Group
+static_assert(Group<Complex>, "Complex class must satisfy the Group concept requirements!");
+
+int main() {
+    std::cout << "Compile-time check passed: Complex is a valid Group!" << std::endl;
+    return 0;
+}

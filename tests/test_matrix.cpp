@@ -2,12 +2,18 @@
 #include <cassert>
 #include "matrix.hpp"
 #include "complex.hpp"
+
+#ifdef __aarch64__
 #include "math_backend.h"
+#endif
 
 int main() {
     std::cout << "Testing Matrix with Complex numbers..." << std::endl;
 
     // 1. Matrix Construction and Addition
+    /* | 1  i |
+       | -i 1 |
+    */
     Matrix<Complex> A(2, 2);
     A(0, 0) = Complex(1, 0); A(0, 1) = Complex(0, 1);
     A(1, 0) = Complex(0, -1); A(1, 1) = Complex(1, 0);
